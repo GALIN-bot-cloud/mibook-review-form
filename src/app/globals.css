@@ -1667,3 +1667,12 @@ a.primaryCta {
   max-width: 432px !important;
   display: block !important;
 }
+
+/* ======================================================
+   업데이트: 곡선 아래 문구 영역 상단 여백 축소
+   ====================================================== */
+
+.heroBottomCopy {
+  padding-top: 4px !important;
+  margin-top: 0 !important;
+}
