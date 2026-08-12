@@ -1681,3 +1681,18 @@ a.primaryCta {
   padding-top: 4px !important;
   margin-top: -40px !important;
 }
+
+/* ======================================================
+   버그 수정: 곡선 도형이 문구보다 위에 그려져서 글자가 가려지던 문제
+   ====================================================== */
+
+.heroBannerCurve {
+  position: static !important;
+  z-index: auto !important;
+}
+
+.heroBottomCopy {
+  position: relative !important;
+  z-index: 5 !important;
+}
+EOF
