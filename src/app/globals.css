@@ -1676,3 +1676,8 @@ a.primaryCta {
   padding-top: 4px !important;
   margin-top: 0 !important;
 }
+
+.heroBottomCopy {
+  padding-top: 4px !important;
+  margin-top: -40px !important;
+}
