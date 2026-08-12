@@ -1636,3 +1636,24 @@ html, body {
   height: 60px;
   border-radius: 8px;
 }
+
+/* ======================================================
+   최종 강제 수정: 참여하기 버튼을 확실하게 전체 폭 직사각형으로 고정
+   (다른 규칙과 충돌 방지를 위해 !important 사용)
+   ====================================================== */
+
+section.ctaSection {
+  display: block !important;
+  padding: 28px 24px 0 !important;
+}
+
+a.primaryCta {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 60px !important;
+  line-height: 60px !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
