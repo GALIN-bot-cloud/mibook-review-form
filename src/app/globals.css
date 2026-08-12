@@ -1657,3 +1657,13 @@ a.primaryCta {
   text-align: center !important;
   box-sizing: border-box !important;
 }
+
+/* ======================================================
+   진단용 수정: 부모 요소 크기와 무관하게 화면 기준(vw)으로 버튼 폭 강제 지정
+   ====================================================== */
+
+a.primaryCta {
+  width: calc(100vw - 48px) !important;
+  max-width: 432px !important;
+  display: block !important;
+}
