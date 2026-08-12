@@ -1611,3 +1611,28 @@ html, body {
   max-width: none;
   border-radius: 8px;
 }
+
+/* ======================================================
+   버그 수정: 문구가 곡선(오렌지 영역)에 걸치던 문제 + 버튼이 안 늘어나던 문제
+   ====================================================== */
+
+/* 문구는 완전히 화이트 영역 안에만 위치하도록 (오렌지에 안 걸치게) */
+.heroBottomCopy {
+  padding-top: 20px;
+  margin-top: 0;
+}
+
+/* CTA 버튼: 부모의 flex 정렬 영향 없이 항상 전체 폭 직사각형으로 */
+.ctaSection {
+  display: block;
+}
+
+.primaryCta {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
