@@ -181,12 +181,15 @@ body {
 }
 
 .stepsSectionHeading {
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  font-family: "Black Han Sans", "Pretendard Variable", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  transform: skewX(-3deg);
   color: var(--ink);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
   margin: 0 0 20px;
-  text-align: left;
+  text-align: center;
 }
 
 .promoStepsList {
@@ -283,7 +286,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  flex: 1;
+  min-width: 130px;
+  height: 44px;
   padding: 0 14px;
   border-radius: 10px;
   border: 1.5px solid var(--color-primary);
