@@ -1,15 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  /* 미북 리뷰 이벤트 - 디자인 토큰 */
+  /* 미북 리뷰 이벤트 - 디자인 토큰 (브랜드 컬러, 절대 변경 금지) */
   --color-bg: #ffa640;
   --color-accent-yellow: #ffff64;
   --color-surface: #ffffff;
   --color-primary: #ff7c3a;
   --color-primary-dark: #e8631f;
   --color-primary-soft: #ffe9da;
-  --color-hero-from: #ff8354;
-  --color-hero-to: #ff4b4b;
   --color-text: #2a211c;
   --color-text-muted: #8a7c73;
   --color-border: #f0e2d6;
@@ -18,6 +16,8 @@
   --color-error: #e5484d;
   --radius-card: 22px;
   --radius-input: 12px;
+  --ink: #2b1608;
+  --ink-muted: rgba(43, 22, 8, 0.62);
 }
 
 @theme inline {
@@ -30,220 +30,300 @@
   box-sizing: border-box;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
 body {
-  background: var(--color-bg);
+  background: #ffffff;
   color: var(--color-text);
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     sans-serif;
 }
 
+/* ============================================================
+   공통 페이지 래퍼 (홈 히어로 페이지 / 신청폼 페이지 둘 다 사용)
+   ============================================================ */
+
 .page-bg {
   position: relative;
   min-height: 100dvh;
-  overflow: hidden;
-  background: linear-gradient(180deg, #ffb868 0%, #ffa640 45%, #ff9645 100%);
+  background: #ffffff;
 }
 
 .page-inner {
   position: relative;
-  z-index: 1;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 48px 20px 64px;
 }
 
-/* ===== 떠다니는 포인트 아이콘 (장식용, 배경) ===== */
-.floatingLayer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.floatChip {
-  position: absolute;
+.formSectionAnchor {
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: var(--color-primary);
-  background: #ffffff;
-  border: 1px solid var(--color-primary-soft);
-  border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(255, 124, 58, 0.14);
-  animation: floatDrift 9s ease-in-out infinite;
-  opacity: 0.85;
-  white-space: nowrap;
+  padding: 40px 20px;
 }
 
-@keyframes floatDrift {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-22px) rotate(4deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
+/* ============================================================
+   히어로 랜딩 페이지 (src/app/page.tsx + PromoHero.tsx)
+   ============================================================ */
+
+.heroWrap {
+  display: block;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .floatChip {
-    animation: none;
-  }
+/* ---------- 상단 오렌지 배너 ---------- */
+.heroBanner {
+  position: relative;
+  background: var(--color-bg);
+  width: 100%;
+  padding: 40px 0 0;
+  overflow: visible;
 }
 
-/* ===== 전체 레이아웃 (데스크톱 2단, 모바일 1단) ===== */
-.layout-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-@media (min-width: 900px) {
-  .layout-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-  }
-}
-
-/* ===== 히어로 프로모 카드 ===== */
-.heroCard {
-  background: linear-gradient(135deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
-  border-radius: var(--radius-card);
-  padding: 32px 28px;
-  color: #ffffff;
-  box-shadow: 0 16px 32px rgba(255, 75, 75, 0.22);
+.heroBannerContent {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 24px 20px;
+  text-align: center;
 }
 
 .heroBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.18);
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-
-.heroTitle {
-  font-size: 26px;
+  padding: 7px 18px;
+  font-size: 13px;
   font-weight: 800;
-  line-height: 1.4;
-  margin: 0 0 10px;
-}
-
-.heroTitleAccent {
-  display: block;
-  font-size: 30px;
-  color: var(--color-accent-yellow);
-}
-
-.heroDesc {
-  font-size: 14px;
-  opacity: 0.92;
-  margin: 0 0 24px;
-  line-height: 1.6;
-}
-
-.heroButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.storeBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 50px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.storeBtn:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
-}
-
-.storeBtnLight {
-  background: #ffffff;
-  color: #2a211c;
-}
-
-.storeBtnDark {
-  background: #1f1a17;
   color: #ffffff;
+  margin-bottom: 18px;
 }
 
-.heroNote {
-  font-size: 12px;
-  opacity: 0.85;
-  text-align: center;
+.headline {
+  font-family: "Black Han Sans", "Pretendard Variable", sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 7.5vw, 36px);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  transform: skewX(-3deg);
+  color: #ffffff;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.28), 0 8px 16px rgba(0, 0, 0, 0.18);
   margin: 0;
 }
 
-/* ===== 참여 방법 스텝 ===== */
-.stepsSection {
+.heroCharacterWrap {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
 }
 
-.stepsHeading {
-  font-size: 15px;
+.characterImg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+/* 배너 하단 웨이브 곡선: 흰색이 곡선 아래쪽부터 배너 맨 밑까지 꽉 채움 */
+.heroBannerCurve {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+/* ---------- 화이트 섹션: 2차 카피 ---------- */
+.heroBottomCopy {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 24px 0;
+  text-align: center;
+}
+
+.heroBottomText1 {
+  font-size: 14px;
   font-weight: 700;
-  color: var(--color-text);
-  margin: 0 0 12px;
+  color: var(--color-primary-dark);
+  margin: 0 0 6px;
 }
 
-.stepsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+.heroBottomText2 {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin: 0;
+  line-height: 1.35;
 }
 
-.stepCard {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  padding: 16px 14px;
+/* ---------- CTA ---------- */
+.ctaSection {
+  display: block;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 24px 0;
+  box-sizing: border-box;
+}
+
+.primaryCta {
+  display: block;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 14px 26px rgba(255, 124, 58, 0.32);
+  box-sizing: border-box;
+}
+
+.primaryCta:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ---------- 참여방법 (개별 스텝 카드) ---------- */
+.stepsSection2 {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+
+.stepsSectionHeading {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.promoStepsList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
-.stepNumber {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
+.promoStepCard {
+  display: flex;
+  gap: 16px;
+  background: #fff8f0;
+  border-radius: 20px;
+  padding: 22px 20px;
+}
+
+.promoStepIconWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+}
+
+.promoStepIcon {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-primary-soft);
+  font-size: 24px;
 }
 
-.stepText {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-text);
+.promoStepBadge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  border: 2px solid #fff8f0;
+}
+
+.promoStepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.promoStepTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+}
+
+.promoStepDesc {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.promoStepNote {
+  font-size: 12px;
+  color: var(--ink-muted);
+  opacity: 0.85;
   line-height: 1.5;
   margin: 0;
 }
 
-/* ===== 신청 폼 카드 ===== */
+/* STEP 01 안에 통합된 스토어 버튼 (Secondary, Primary CTA보다 낮은 위계) */
+.stepStoreCaption {
+  margin: 10px 0 8px;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.stepStoreRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stepStoreButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.stepStoreButton:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* ============================================================
+   신청폼 페이지 (src/app/apply/page.tsx + ReviewForm.tsx)
+   ============================================================ */
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 32px 28px 28px;
+  box-shadow: 0 2px 16px rgba(25, 31, 40, 0.06);
+}
+
 .formCardHeading {
   font-size: 18px;
   font-weight: 800;
@@ -259,123 +339,6 @@ body {
 
 .requiredMark {
   color: var(--color-primary);
-}
-
-/* ===== 개인정보 동의 체크박스 ===== */
-.agreeRow {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 14px 4px;
-}
-
-.agreeCheckbox {
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
-  accent-color: var(--color-primary);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.agreeLabel {
-  font-size: 13px;
-  color: var(--color-text);
-  cursor: pointer;
-  line-height: 1.5;
-}
-
-.agreeToggle {
-  background: none;
-  border: none;
-  font-size: 12px;
-  color: var(--color-text-muted);
-  text-decoration: underline;
-  cursor: pointer;
-  margin-left: 4px;
-}
-
-.agreeDetail {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  background: #fbf6f1;
-  border-radius: 10px;
-  padding: 12px 14px;
-  line-height: 1.6;
-  margin: -4px 0 4px;
-}
-
-/* ===== 안내사항 ===== */
-.guideSection {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-border);
-}
-
-.guideHeading {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--color-text);
-  margin: 0 0 10px;
-}
-
-.guideList {
-  margin: 0;
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.guideList li {
-  font-size: 12.5px;
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-.page-center {
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-}
-
-/* ===== 리뷰 신청 폼 (ReviewForm) ===== */
-.card {
-  width: 100%;
-  max-width: 440px;
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  padding: 32px 28px 28px;
-  box-shadow: 0 2px 16px rgba(25, 31, 40, 0.06);
-}
-
-.header {
-  margin-bottom: 24px;
-}
-
-.eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--color-primary);
-  margin: 0 0 8px;
-}
-
-.title {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--color-text);
-  margin: 0 0 8px;
-  line-height: 1.4;
-}
-
-.desc {
-  font-size: 14px;
-  color: var(--color-text-muted);
-  line-height: 1.6;
-  margin: 0;
 }
 
 .form {
@@ -488,6 +451,49 @@ body {
   cursor: pointer;
 }
 
+.agreeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 4px;
+}
+
+.agreeCheckbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.agreeLabel {
+  font-size: 13px;
+  color: var(--color-text);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.agreeToggle {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.agreeDetail {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: #fbf6f1;
+  border-radius: 10px;
+  padding: 12px 14px;
+  line-height: 1.6;
+  margin: -4px 0 4px;
+}
+
 .submitErrorBanner {
   font-size: 13px;
   color: var(--color-error);
@@ -527,6 +533,33 @@ body {
   margin: 4px 0 0;
 }
 
+.guideSection {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.guideHeading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 10px;
+}
+
+.guideList {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guideList li {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
 .successIcon {
   width: 56px;
   height: 56px;
@@ -557,1142 +590,16 @@ body {
   margin: 0;
 }
 
-/* ===== 히어로 섹션 (세로 단락 구조) ===== */
-html {
-  scroll-behavior: smooth;
+/* ============================================================
+   반응형: 모바일에서 좁은 화면 대응
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .promoStepCard {
+    padding: 18px 16px;
+  }
+
+  .stepStoreRow {
+    flex-direction: column;
+  }
 }
-
-.heroSection {
-  text-align: center;
-  padding: 12px 0 40px;
-}
-
-.heroHeadline {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--color-text);
-  margin: 4px 0 8px;
-  line-height: 1.4;
-}
-
-.heroSubtext {
-  font-size: 14px;
-  color: var(--color-text-muted);
-  margin: 0 0 24px;
-}
-
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 54px;
-  padding: 0 48px;
-  border-radius: 999px;
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 17px;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 10px 24px rgba(255, 124, 58, 0.32);
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.ctaButton:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-1px);
-}
-
-.heroFinePrint {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  margin: 14px 0 12px;
-}
-
-.storeRowBox {
-  display: inline-flex;
-  gap: 10px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
-  margin: 0 0 28px;
-}
-
-.storeChip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--color-text);
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.15s ease;
-}
-
-.storeChip:hover {
-  transform: translateY(-1px);
-}
-
-.stepsPlainList {
-  max-width: 360px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  text-align: left;
-}
-
-.stepsPlainList li {
-  font-size: 12.5px;
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-.formSectionAnchor {
-  display: flex;
-  justify-content: center;
-  scroll-margin-top: 24px;
-}
-
-/* ctaButton이 <button> 태그로 바뀌면서 필요한 기본 스타일 보정 */
-.ctaButton {
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-/* ======================================================
-   전면 리디자인: Cute + Clean + Premium + Modern
-   - 캐릭터 이미지 / 브랜드 컬러(#FFA640, #FF7C3A, #FFFF64)는 그대로 유지
-   - 나머지 레이아웃/타이포/여백/CTA/카드는 새로 설계
-   ====================================================== */
-
-:root {
-  --ink: #2b1608;
-  --ink-muted: rgba(43, 22, 8, 0.62);
-}
-
-/* 페이지 배경: 브랜드 배경색 단색, 장식 요소 없음 */
-.page-bg {
-  background: var(--color-bg);
-  overflow: visible;
-}
-
-.page-inner {
-  max-width: 480px;
-  padding: 0 20px 72px;
-}
-
-.heroWrap {
-  display: flex;
-  flex-direction: column;
-}
-
-/* ---------- 1순위: 이벤트 카피 + 2,000P ---------- */
-.heroCopy {
-  padding-top: 56px;
-  text-align: center;
-}
-
-.eyebrowLabel {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--ink-muted);
-  margin-bottom: 14px;
-}
-
-.headline {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.35;
-  color: var(--ink);
-}
-
-.headlinePoint {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  padding: 6px 18px;
-  background: var(--color-accent-yellow, #ffff64);
-  color: var(--ink);
-  font-size: 30px;
-  font-weight: 800;
-  border-radius: 999px;
-  line-height: 1.3;
-}
-
-.heroDescription {
-  margin: 18px 0 0;
-  font-size: 15px;
-  color: var(--ink-muted);
-  line-height: 1.6;
-}
-
-/* ---------- 4순위: 캐릭터 이미지 (그대로, 여백만 확보) ---------- */
-.characterSection {
-  display: flex;
-  justify-content: center;
-  margin: 44px 0 40px;
-}
-
-.characterImg {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-}
-
-/* ---------- 3순위: Primary CTA ---------- */
-.ctaSection {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.primaryCta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 320px;
-  height: 58px;
-  border-radius: 999px;
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 12px 24px rgba(255, 124, 58, 0.35);
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.primaryCta:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-1px);
-}
-
-/* ---------- 스토어 선택 (CTA보다 낮은 우선순위) ---------- */
-.storeSection {
-  text-align: center;
-  margin-bottom: 56px;
-}
-
-.storeLabel {
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin: 0 0 12px;
-}
-
-.storeButtons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.storeButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 42px;
-  padding: 0 20px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.55);
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-
-.storeButton:hover {
-  background: rgba(255, 255, 255, 0.8);
-  transform: translateY(-1px);
-}
-
-/* ---------- 5순위: 참여 방법 (Step UI) ---------- */
-.stepsSection2 {
-  padding-top: 24px;
-  border-top: 1px solid rgba(43, 22, 8, 0.08);
-}
-
-.stepsList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.stepCard2 {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 18px 20px;
-  box-shadow: 0 4px 14px rgba(43, 22, 8, 0.06);
-}
-
-.stepNum {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--color-primary);
-  opacity: 0.4;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.stepBody {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.stepTitle {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.stepDesc {
-  margin: 0;
-  font-size: 13px;
-  color: var(--ink-muted);
-  line-height: 1.5;
-}
-
-/* ======================================================
-   업데이트: Hero 문구 변경 + Display 폰트 + Step 구조 개편
-   ====================================================== */
-
-/* Hero 제목만 Jua(귀엽고 둥근 Display Font) 적용, 본문은 Pretendard 유지 */
-.headline {
-  font-family: "Jua", "Pretendard Variable", sans-serif;
-  font-size: 27px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.45;
-}
-
-.headlinePoint {
-  font-family: "Jua", "Pretendard Variable", sans-serif;
-  font-weight: 400;
-  font-size: 32px;
-  letter-spacing: -0.01em;
-}
-
-/* 참여방법 섹션 제목: Hero보다 작고 Step 제목보다 크게 */
-.stepsSectionHeading {
-  font-size: 19px;
-  font-weight: 800;
-  color: var(--ink);
-  margin: 0 0 16px;
-  text-align: left;
-}
-
-/* STEP 01 안에 통합된 스토어 버튼 (Secondary CTA - Primary보다 낮은 위계) */
-.stepStoreCaption {
-  margin: 10px 0 8px;
-  font-size: 12px;
-  color: var(--ink-muted);
-}
-
-.stepStoreRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.stepStoreButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  padding: 0 14px;
-  border-radius: 10px;
-  border: 1.5px solid var(--color-primary);
-  background: transparent;
-  color: var(--color-primary);
-  font-size: 12.5px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.stepStoreButton:hover {
-  background: var(--color-primary);
-  color: #ffffff;
-}
-
-/* STEP 02의 추가 안내 문구 (메인 설명보다 한 단계 낮은 위계) */
-.stepNote {
-  margin: 6px 0 0;
-  font-size: 12px;
-  color: var(--ink-muted);
-  opacity: 0.85;
-  line-height: 1.5;
-}
-
-/* ======================================================
-   업데이트: 컬러 배너(곡선 하단) + 캐릭터 통합 + Step 단일 박스 구조
-   ====================================================== */
-
-/* 전체 페이지 기본 배경은 화이트로, 컬러는 상단 배너에만 사용 */
-.page-bg {
-  background: #ffffff;
-}
-
-.page-inner {
-  padding: 0 0 72px;
-}
-
-.heroWrap {
-  display: flex;
-  flex-direction: column;
-}
-
-/* ---------- 상단 컬러 배너 ---------- */
-.heroBanner {
-  position: relative;
-  background: var(--color-bg);
-  padding: 52px 20px 0;
-  overflow: hidden;
-}
-
-.heroBannerContent {
-  max-width: 440px;
-  margin: 0 auto;
-  text-align: center;
-  padding-bottom: 46px;
-}
-
-.heroBannerCurve {
-  display: block;
-  width: 100%;
-  height: 48px;
-}
-
-/* 배너 위 문구는 화이트 계열로 (오렌지 배경 대비) */
-.heroBanner .headline {
-  color: #ffffff;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-}
-
-.heroBanner .heroDescription {
-  color: rgba(255, 255, 255, 0.92);
-  margin-top: 14px;
-}
-
-.characterSection {
-  display: flex;
-  justify-content: center;
-  margin-top: 28px;
-}
-
-.characterImg {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-}
-
-/* ---------- CTA (화이트 섹션 최상단) ---------- */
-.ctaSection {
-  display: flex;
-  justify-content: center;
-  padding: 28px 20px 0;
-  margin-bottom: 44px;
-}
-
-/* ---------- 참여방법: 단일 박스 + Step Row ---------- */
-.stepsSection2 {
-  padding: 0 20px;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.stepsGroupCard {
-  background: #fff8f0;
-  border-radius: 20px;
-  padding: 4px 20px;
-}
-
-.stepRow {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(43, 22, 8, 0.08);
-}
-
-.stepRowLast {
-  border-bottom: none;
-}
-
-.stepRowNum {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 800;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.stepRowBody {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* ======================================================
-   버그 수정: 헤드라인 줄바꿈 강제 + Jua 폰트 명시 재확인
-   ====================================================== */
-
-.headline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Jua", "Pretendard Variable", sans-serif !important;
-}
-
-.headlinePoint {
-  display: inline-block;
-  margin: 12px auto 0;
-  font-family: "Jua", "Pretendard Variable", sans-serif !important;
-}
-
-/* ======================================================
-   업데이트: 헤더바 + 단일 서체(Pretendard) 통일 + 하단 강조문구
-   ====================================================== */
-
-/* 폰트는 전체 페이지에서 Pretendard 하나로 통일 (Jua 사용 중단) */
-.headline {
-  display: block;
-  font-family: "Pretendard Variable", sans-serif !important;
-  font-weight: 800;
-  font-size: 26px;
-  line-height: 1.4;
-  color: #ffffff;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-}
-
-.headlinePoint {
-  display: none; /* 더 이상 사용하지 않음 (문구가 headline 안에 통합됨) */
-}
-
-/* 상단 헤더바 (뒤로가기/제목/메뉴 - 장식용) */
-.heroTopBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 4px 18px;
-  color: #ffffff;
-}
-
-.heroTopBarBack {
-  font-size: 20px;
-  font-weight: 700;
-  width: 24px;
-}
-
-.heroTopBarTitle {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-}
-
-.heroTopBarIcons {
-  font-size: 18px;
-  font-weight: 700;
-  width: 24px;
-  text-align: right;
-}
-
-/* 배너 상단 카피 (eyebrow + 기간) */
-.heroEyebrowPlain {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-  color: #ffffff;
-  margin: 0 0 10px;
-}
-
-.heroPeriod {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 14px 0 0;
-}
-
-/* 곡선 아래 하단 강조 문구 (첨부 이미지1의 하단 텍스트 위치) */
-.heroBottomCopy {
-  text-align: center;
-  padding: 32px 20px 0;
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-.heroBottomText1 {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--color-primary-dark);
-  margin: 0 0 8px;
-}
-
-.heroBottomText2 {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 800;
-  font-size: 23px;
-  color: var(--color-primary);
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* ======================================================
-   버그 수정: 히어로 배너가 화면 좌우 끝까지 꽉 차도록 (풀블리드)
-   ====================================================== */
-
-.heroBanner {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-}
-
-/* 곡선을 더 완만하게 조정 (배너가 좁을 때 알약처럼 보이던 문제 방지) */
-.heroBannerCurve {
-  display: block;
-  width: 100%;
-  height: 40px;
-}
-
-/* ======================================================
-   전면 레이아웃 재구성: 모바일 프로모션 랜딩페이지 비율 (CGV 레퍼런스 기준)
-   색상은 브랜드 컬러 그대로, 레이아웃/타이포/여백/카드만 재설계
-   ====================================================== */
-
-html, body {
-  background: #efefef;
-}
-
-/* 전체 페이지: 데스크톱에서도 430px 모바일 폭으로 고정, 중앙 정렬 */
-.page-bg {
-  max-width: 430px;
-  margin: 0 auto;
-  background: #ffffff;
-  min-height: 100vh;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
-}
-
-.page-inner {
-  padding: 0 0 90px;
-}
-
-/* ---------- 히어로 배너 ---------- */
-.heroBanner {
-  position: relative;
-  background: var(--color-bg);
-  margin: 0;
-  width: 100%;
-  padding: 20px 24px 0;
-  overflow: visible;
-}
-
-.heroTopBar {
-  padding: 4px 0 28px;
-}
-
-.heroBannerContent {
-  text-align: center;
-  padding-bottom: 26px;
-}
-
-.heroBadge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
-  padding: 7px 18px;
-  font-size: 13px;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 18px;
-}
-
-.headline {
-  font-size: 38px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.18;
-  color: #ffffff;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), 0 8px 18px rgba(0, 0, 0, 0.15);
-  margin: 0;
-}
-
-.heroPeriod {
-  font-size: 14px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 16px 0 0;
-}
-
-/* 캐릭터: 곡선 경계에 겹치도록 배치 */
-.heroCharacterWrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-top: -64px;
-  margin-bottom: -56px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.characterImg {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-}
-
-.heroBannerCurve {
-  display: block;
-  width: 100%;
-  height: 56px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ---------- 2차 카피 (화이트 섹션 첫 문구) ---------- */
-.heroBottomCopy {
-  text-align: center;
-  padding: 12px 24px 0;
-}
-
-.heroBottomText1 {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--color-primary-dark);
-  margin: 0 0 6px;
-}
-
-.heroBottomText2 {
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--color-primary);
-  margin: 0;
-  line-height: 1.35;
-}
-
-/* ---------- CTA ---------- */
-.ctaSection {
-  padding: 28px 24px 0;
-}
-
-.primaryCta {
-  display: flex;
-  width: 100%;
-  height: 60px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  box-shadow: 0 14px 26px rgba(255, 124, 58, 0.32);
-}
-
-/* ---------- 참여방법: 큰 섹션 제목 ---------- */
-.stepsSection2 {
-  padding: 52px 24px 0;
-  max-width: none;
-  margin: 0;
-}
-
-.stepsSectionHeading {
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  margin: 0 0 20px;
-}
-
-/* ---------- 개별 스텝 카드 ---------- */
-.promoStepsList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.promoStepCard {
-  display: flex;
-  gap: 16px;
-  background: #fff8f0;
-  border-radius: 20px;
-  padding: 22px 20px;
-}
-
-.promoStepIconWrap {
-  position: relative;
-  flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-}
-
-.promoStepIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: var(--color-primary-soft);
-  font-size: 24px;
-}
-
-.promoStepBadge {
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 800;
-  border: 2px solid #fff8f0;
-}
-
-.promoStepBody {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-top: 2px;
-}
-
-.promoStepTitle {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--ink);
-  margin: 0;
-}
-
-.promoStepDesc {
-  font-size: 13.5px;
-  color: var(--ink-muted);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.promoStepNote {
-  font-size: 12px;
-  color: var(--ink-muted);
-  opacity: 0.85;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ======================================================
-   버그 수정: 상단바/기간 문구 제거 + 캐릭터-곡선 겹침 해제
-   ====================================================== */
-
-.heroTopBar {
-  display: none;
-}
-
-.heroPeriod {
-  display: none;
-}
-
-.heroBanner {
-  padding: 40px 24px 0;
-}
-
-.heroBannerContent {
-  padding-bottom: 0;
-}
-
-/* 캐릭터를 겹치지 않게 배너 안에 완전히 포함 */
-.heroCharacterWrap {
-  margin-top: 20px;
-  margin-bottom: 0;
-  z-index: auto;
-}
-
-.characterImg {
-  max-width: 280px;
-}
-
-.heroBannerCurve {
-  margin-top: 8px;
-}
-
-/* ======================================================
-   버그 수정: 웨이브 곡선을 훨씬 얕고 자연스럽게 조정
-   ====================================================== */
-
-.heroBannerCurve {
-  height: 30px;
-  margin-top: 0;
-  display: block;
-}
-/* ======================================================
-   버그 수정: 웨이브 높이를 path와 맞춰 재조정 (흰색이 배너 하단까지 완전히 닿도록)
-   ====================================================== */
-
-.heroBannerCurve {
-  height: 42px;
-  margin-top: 0;
-  display: block;
-}
-
-/* ======================================================
-   버그 수정: 웨이브 곡선을 레퍼런스처럼 더 뚜렷하게 확대
-   ====================================================== */
-
-.heroBannerCurve {
-  height: 60px;
-  margin-top: 0;
-  display: block;
-}
-
-/* ======================================================
-   업데이트: 데스크톱 좌우 여백을 회색이 아닌 브랜드 톤 배경으로 채움
-   ====================================================== */
-
-html, body {
-  background: var(--color-primary-soft);
-}
-
-/* ======================================================
-   업데이트: 배경색은 화면 전체 너비로, 콘텐츠(글자/버튼)만 중앙 좁게 정렬
-   ====================================================== */
-
-html, body {
-  background: #ffffff;
-}
-
-/* 페이지 배경: 프레임(회색/틴트) 제거, 화면 전체 너비 사용 */
-.page-bg {
-  max-width: none;
-  margin: 0;
-  background: #ffffff;
-  box-shadow: none;
-}
-
-/* 오렌지 배너는 화면 끝까지, 안쪽 텍스트/캐릭터만 중앙 좁게 정렬 */
-.heroBannerContent {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-/* 화이트 섹션들도 배경은 전체 너비, 내용만 중앙 좁게 정렬 */
-.heroBottomCopy {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.ctaSection {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.stepsSection2 {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-/* ======================================================
-   버그 수정: page-inner에 남아있던 최대너비 제한 제거 (배너가 좁아지던 원인)
-   ====================================================== */
-
-.page-inner {
-  max-width: none;
-  margin: 0;
-}
-
-/* ======================================================
-   버그 수정: 곡선이 배너 안쪽 padding 때문에 화면 끝에 못 닿던 문제
-   + 참여하기 버튼에 남아있던 max-width:320px 제거 (직사각형 형태로)
-   ====================================================== */
-
-/* heroBanner 자체는 좌우 padding 없이 화면 끝까지, 텍스트만 안쪽에서 여백 확보 */
-.heroBanner {
-  padding: 20px 0 0;
-}
-
-.heroBannerContent {
-  padding: 0 24px;
-}
-
-.heroBannerCurve {
-  height: 90px;
-}
-
-/* 참여하기 버튼: 가로로 긴 직사각형 형태로 (예전 max-width 320px 제한 제거) */
-.primaryCta {
-  max-width: none;
-  border-radius: 10px;
-}
-
-/* ======================================================
-   업데이트: Hero 타이틀 서체를 Black Han Sans + 기울임 + 그림자로 변경
-   ====================================================== */
-
-.headline {
-  font-family: "Black Han Sans", "Pretendard Variable", sans-serif !important;
-  font-weight: 400;
-  font-size: 34px;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  transform: skewX(-3deg);
-  color: #ffffff;
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.28), 0 8px 16px rgba(0, 0, 0, 0.18);
-}
-
-/* ======================================================
-   업데이트: 헤드라인이 한 줄로 나오도록 글씨 크기 조정 + 줄바꿈 방지
-   ====================================================== */
-
-.headline {
-  font-size: 50px;
-  white-space: nowrap;
-}
-
-/* ======================================================
-   버그 수정: 좁은 화면에서 헤드라인이 밖으로 삐져나가던 문제
-   - 화면 폭에 비례해서 글씨 크기가 자동으로 줄어들도록 (clamp 사용)
-   ====================================================== */
-
-.headline {
-  font-size: clamp(20px, 7vw, 34px);
-  white-space: normal;
-  overflow-wrap: break-word;
-}
-
-.heroBanner {
-  overflow: hidden;
-}
-
-/* ======================================================
-   업데이트: 제목 크기 확대 + 곡선-문구 간격 축소 + 버튼 직사각형 강화
-   ====================================================== */
-
-.headline {
-  font-size: clamp(22px, 7.5vw, 36px);
-}
-
-.heroBottomCopy {
-  padding-top: 0;
-  margin-top: -8px;
-}
-
-.primaryCta {
-  width: 100%;
-  max-width: none;
-  border-radius: 8px;
-}
-
-/* ======================================================
-   버그 수정: 문구가 곡선(오렌지 영역)에 걸치던 문제 + 버튼이 안 늘어나던 문제
-   ====================================================== */
-
-/* 문구는 완전히 화이트 영역 안에만 위치하도록 (오렌지에 안 걸치게) */
-.heroBottomCopy {
-  padding-top: 20px;
-  margin-top: 0;
-}
-
-/* CTA 버튼: 부모의 flex 정렬 영향 없이 항상 전체 폭 직사각형으로 */
-.ctaSection {
-  display: block;
-}
-
-.primaryCta {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  line-height: 60px;
-  height: 60px;
-  border-radius: 8px;
-}
-
-/* ======================================================
-   최종 강제 수정: 참여하기 버튼을 확실하게 전체 폭 직사각형으로 고정
-   (다른 규칙과 충돌 방지를 위해 !important 사용)
-   ====================================================== */
-
-section.ctaSection {
-  display: block !important;
-  padding: 28px 24px 0 !important;
-}
-
-a.primaryCta {
-  display: block !important;
-  width: 100% !important;
-  max-width: none !important;
-  height: 60px !important;
-  line-height: 60px !important;
-  border-radius: 8px !important;
-  text-align: center !important;
-  box-sizing: border-box !important;
-}
-
-/* ======================================================
-   진단용 수정: 부모 요소 크기와 무관하게 화면 기준(vw)으로 버튼 폭 강제 지정
-   ====================================================== */
-
-a.primaryCta {
-  width: calc(100vw - 48px) !important;
-  max-width: 432px !important;
-  display: block !important;
-}
-
-/* ======================================================
-   업데이트: 곡선 아래 문구 영역 상단 여백 축소
-   ====================================================== */
-
-.heroBottomCopy {
-  padding-top: 4px !important;
-  margin-top: 0 !important;
-}
-
-.heroBottomCopy {
-  padding-top: 4px !important;
-  margin-top: -40px !important;
-}
-
-/* ======================================================
-   버그 수정: 곡선 도형이 문구보다 위에 그려져서 글자가 가려지던 문제
-   ====================================================== */
-
-.heroBannerCurve {
-  position: static !important;
-  z-index: auto !important;
-}
-
-.heroBottomCopy {
-  position: relative !important;
-  z-index: 5 !important;
-}
-EOF

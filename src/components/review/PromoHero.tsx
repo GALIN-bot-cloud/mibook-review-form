@@ -27,8 +27,8 @@ export default function PromoHero() {
         </div>
 
         <svg className="heroBannerCurve" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M1440,65 L1440,100 L0,100 L0,65 Q720,-25 1440,65 Z" fill="#ffffff" />
-</svg>
+          <path d="M1440,65 L1440,100 L0,100 L0,65 Q720,-25 1440,65 Z" fill="#ffffff" />
+        </svg>
       </section>
 
       {/* 화이트 섹션: 2차 카피 + CTA + 참여방법 */}
