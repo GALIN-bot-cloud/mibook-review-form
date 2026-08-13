@@ -126,13 +126,13 @@ body {
 .heroBannerCurve {
   display: block;
   width: 100%;
-  height: 50px;
+  height: 30px;
 }
 /* ---------- 화이트 섹션: 2차 카피 ---------- */
 .heroBottomCopy {
   max-width: 480px;
   margin: 0 auto;
-  padding: 4px 24px 0;
+  padding: 0 24px 0;
   text-align: center;
 }
 
