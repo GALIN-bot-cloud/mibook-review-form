@@ -227,6 +227,7 @@ export default function AdminDashboard() {
         <div className="adminSummaryCard">
           <p className="adminSummaryLabel">TOTAL REQUESTS</p>
           <p className="adminSummaryValue">{summary.total}건</p>
+          <p className="adminSummarySub">전체 접수건 수</p>
         </div>
         <div className="adminSummaryCard">
           <p className="adminSummaryLabel">COMPLETED</p>
@@ -236,6 +237,7 @@ export default function AdminDashboard() {
         <div className="adminSummaryCard">
           <p className="adminSummaryLabel">IN REVIEW</p>
           <p className="adminSummaryValue adminSummaryValue-warning">{summary.reviewing}건</p>
+          <p className="adminSummarySub">검수 대기중</p>
         </div>
         <div className="adminSummaryCard">
           <p className="adminSummaryLabel">REJECTED</p>
@@ -243,7 +245,7 @@ export default function AdminDashboard() {
           <p className="adminSummarySub">정보 미확인/반려</p>
         </div>
       </section>
-
+      
       {activeTab === "log" ? (
         <section className="adminEmptyNotice">
           관리자 로그 기능은 추후 업데이트될 예정입니다.
