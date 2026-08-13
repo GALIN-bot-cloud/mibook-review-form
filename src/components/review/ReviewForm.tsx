@@ -156,7 +156,7 @@ export default function ReviewForm() {
 
           <div className="field">
             <label className="label" htmlFor="email">
-              미북 이메일 <span className="requiredMark">*</span>
+              미북 계정 ID <span className="requiredMark">*</span>
             </label>
             <input
               id="email"
@@ -165,6 +165,9 @@ export default function ReviewForm() {
               className="input"
               {...register("email")}
             />
+            <a href="https://drive.google.com/file/d/1uWGcD_N8o9ov-pRfszg6Q2VH2EDxFXbu/view?usp=sharing" target="_blank" rel="noreferrer" className="fieldHint">
+              *미북스토어 가입 및 포인트 확인 방법 상세보기
+            </a>
             {errors.email && <p className="errorText">{errors.email.message}</p>}
           </div>
 
@@ -230,12 +233,37 @@ export default function ReviewForm() {
             </label>
           </div>
           {showAgreeDetail && (
-            <p className="agreeDetail">
-              수집 항목: 성함, 이메일, 전화번호, 리뷰 캡처 이미지 · 수집 목적: 리뷰 작성 확인 및
-              포인트 지급 · 보유 기간: 지급 완료 후 이벤트 종료 시점까지 · 위 동의를 거부할 수 있으며,
-              거부 시 이벤트 참여가 제한됩니다.
-            </p>
-          )}
+  <div className="agreeDetail">
+    <p className="agreeDetailTitle">개인정보 수집 및 이용 동의 안내</p>
+    <p>
+      메가스터디교육㈜는 개인정보 보호법 제15조 제1항 제1호에 따라, 정보주체의 동의가
+      필요합니다.
+    </p>
+
+    <p className="agreeDetailSection">[1] 개인정보 수집 및 이용 목적</p>
+    <p>- 앱 리뷰 프로모션 참여자 대상 포인트 지급 및 기프티콘 발송 목적의 자료 활용</p>
+
+    <p className="agreeDetailSection">[2] 수집 항목</p>
+    <p>- 이름, 연락처, 미북스토어 계정 및 본 신청서 기재 항목 전체</p>
+
+    <p className="agreeDetailSection">[3] 개인정보 보유 및 이용 기간</p>
+    <p>
+      - 수집된 개인정보는 앱 리뷰 프로모션 종료 후 1년간 보관되며, 이후 파기됩니다.
+      <br />
+      - 수집된 정보는 본 프로모의 운영과 관련된 용도로만 사용되며, 그 외의 목적으로는
+      활용되지 않습니다.
+    </p>
+
+    <p className="agreeDetailSection">[4] 동의 거부 시 불이익</p>
+    <p>
+      - 개인정보 제공에 대한 동의를 거부할 수 있으나, 이 경우 경품 지급에 제한이 있을 수
+      있습니다.
+    </p>
+
+    <p className="agreeDetailSection">[5] 유의사항</p>
+    <p>제출한 구글폼 형태의 서류는 반환하지 않습니다.</p>
+  </div>
+)}
           {errors.agreePrivacy && <p className="errorText">{errors.agreePrivacy.message}</p>}
 
           {submitState === "error" && submitError && <p className="submitErrorBanner">{submitError}</p>}
