@@ -286,8 +286,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  min-width: 130px;
+  width: 100%;
   height: 44px;
   padding: 0 14px;
   border-radius: 10px;
@@ -632,10 +631,11 @@ body {
   }
 }
 
-  .stepStoreRow {
-    flex-direction: column;
-  }
-
+.stepStoreRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 @media (min-width: 900px) {
   .heroBannerCurve {
