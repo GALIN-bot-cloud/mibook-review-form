@@ -70,12 +70,12 @@ export default function ReviewDetailModal({
             <div className="modalImageSectionHeader">
               <p className="modalInfoBoxTitle">리뷰 캡처 (클릭하면 확대됨)</p>
               
-                href={record.reviewImageUrl}
+                 <a href={record.reviewImageUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="modalImageOpenLink"
               >
-                ↗ 원본 크게 보기
+                원본 크게 보기
               </a>
             </div>
             <a href={record.reviewImageUrl} target="_blank" rel="noreferrer">
