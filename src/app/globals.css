@@ -166,7 +166,7 @@ body {
   letter-spacing: -0.01em;
   text-align: center;
   text-decoration: none;
-  box-shadow: 0 14px 26px rgba(255, 124, 58, 0.32);
+  box-shadow: 0 6px 12px rgba(255, 124, 58, 0.32);
   box-sizing: border-box;
 }
 
@@ -1552,4 +1552,18 @@ body {
   font-size: 12.5px;
   color: var(--color-error);
   margin: 4px 0 0;
+}
+
+/* ======================================================
+   업데이트: PC 화면에서만 2차 카피 문구 글자 크기 소폭 확대
+   ====================================================== */
+
+@media (min-width: 900px) {
+  .heroBottomText1 {
+    font-size: 16px;
+  }
+
+  .heroBottomText2 {
+    font-size: 27px;
+  }
 }
