@@ -612,7 +612,7 @@ body {
 
 @media (min-width: 900px) {
   .heroBannerCurve {
-    height: 70px;
+    height: 55px;
   }
 }
 
@@ -667,6 +667,6 @@ body {
 
 @media (min-width: 900px) {
   .heroBottomCopy {
-    margin-top: -14px;
+    margin-top: 0;
   }
 }
