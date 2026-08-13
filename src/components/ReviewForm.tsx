@@ -122,6 +122,8 @@ export default function ReviewForm() {
   if (submitState === "success") {
     return (
       <div className="card">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/apply-character.png" alt="미북 캐릭터" className="cardCharacter" />
         <div className="successIcon">✓</div>
         <h1 className="successTitle">리뷰 인증이 접수됐어요</h1>
         <p className="successDesc">
@@ -135,6 +137,8 @@ export default function ReviewForm() {
 
   return (
     <div className="card">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/apply-character.png" alt="미북 캐릭터" className="cardCharacter" />
       <h2 className="formCardHeading">리뷰 인증 접수</h2>
       <p className="formCardDesc">아래 정보를 정확히 입력해 주세요.</p>
 

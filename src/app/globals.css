@@ -59,7 +59,7 @@ body {
 .formSectionAnchor {
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
+  padding: clamp(140px, 34vw, 260px) 20px 40px;
 }
 
 /* ============================================================
@@ -318,11 +318,14 @@ body {
    ============================================================ */
 
 .card {
+  position: relative;
+  overflow: visible;
   width: 100%;
   max-width: 440px;
   background: #ffffff;
   border-radius: var(--radius-card);
   padding: 32px 28px 28px;
+  padding-top: clamp(80px, 18vw, 160px);
   box-shadow: 0 2px 16px rgba(25, 31, 40, 0.06);
 }
 
@@ -837,4 +840,28 @@ body {
   height: 6px;
   background: #ffffff;
   pointer-events: none;
+}
+
+/* ======================================================
+   업데이트: 신청폼 카드 상단에 캐릭터가 걸쳐서 튀어나오는 배치
+   ====================================================== */
+
+.cardCharacter {
+  position: absolute;
+  z-index: 10;
+  top: clamp(-190px, -34vw, -70px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(240px, 60vw, 420px);
+  max-width: 92vw;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@media (max-width: 380px) {
+  .cardCharacter {
+    top: clamp(-160px, -40vw, -60px);
+    width: clamp(200px, 68vw, 300px);
+  }
 }
