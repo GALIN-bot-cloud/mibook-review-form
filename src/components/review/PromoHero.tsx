@@ -7,9 +7,9 @@ const GOOGLE_PLAY_REVIEW_URL = "https://play.google.com/store/apps/details?id=ne
 
 const STEPS = [
   { icon: "⭐", title: "리뷰 작성", desc: "앱 스토어에서 리뷰를 작성해주세요." },
-  { icon: "📷", title: "작성한 리뷰 화면 캡처", desc: "작성된 리뷰 전체 내용이 보일 수 있도록 화면을 캡처해주세요", note: "캡처한 화면은 추후 이벤트 폼 양식에 업로드하는 용도로 사용됩니다" },
+  { icon: "📷", title: "작성한 리뷰 화면 캡처", desc: "작성된 리뷰 전체 내용이 보일 수 있도록 화면을 캡처해주세요", note: "(*캡처한 화면은 추후 이벤트 폼 양식에 업로드하는 용도로 사용됩니다)" },
   { icon: "📝", title: "이벤트 참여 폼 작성", desc: "참여버튼을 통해 이벤트 폼 양식을 작성해주세요" },
-  { icon: "🎁", title: "포인트 지급", desc: "작성일 기준 5영업일 이내에 포인트를 지급합니다." },
+  { icon: "🎁", title: "포인트 지급", desc: "작성일 기준 1~1영업일 이내에 포인트를 지급합니다." },
 ];
 
 export default function PromoHero() {
@@ -21,8 +21,8 @@ export default function PromoHero() {
         <div className="heroBannerContent">
           <span className="heroBadge">미북 앱 리뷰 이벤트</span>
           <h1 className="headline">
-  <span className="headlineAccent">리뷰</span> 남기고 <span className="headlineAccent">혜택</span> 받자!
-</h1>
+            <span className="headlineAccent">리뷰</span> 남기고 <span className="headlineAccent">혜택</span> 받자!
+          </h1>
 
           <div className="heroCharacterWrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -64,7 +64,6 @@ export default function PromoHero() {
 
                 {i === 0 && (
                   <>
-                    <p className="stepStoreCaption">사용 중인 기기에 맞는 스토어를 선택해주세요.</p>
                     <div className="stepStoreRow">
                       <a href={APP_STORE_REVIEW_URL} className="stepStoreButton" target="_blank" rel="noreferrer">
                         App Store 리뷰 작성
