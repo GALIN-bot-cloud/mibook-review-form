@@ -670,3 +670,46 @@ body {
     margin-top: 0;
   }
 }
+
+/* ======================================================
+   업데이트: 페이지 진입 시 코인이 위에서 쏟아지는 인트로 모션
+   ====================================================== */
+
+.coinRainLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.coinRainItem {
+  position: absolute;
+  top: -60px;
+  line-height: 1;
+  animation-name: coinFall;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes coinFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coinRainLayer {
+    display: none;
+  }
+}

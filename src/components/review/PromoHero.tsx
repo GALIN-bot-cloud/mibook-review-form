@@ -1,5 +1,6 @@
 // [UI] 히어로(배지→타이틀→캐릭터, 겹침 없음) + 곡선 + 2차 카피 + CTA + 개별 스텝 카드
 import Link from "next/link";
+import CoinRain from "@/components/review/CoinRain";
 
 const APP_STORE_REVIEW_URL = "https://apps.apple.com/kr/app/mebook/id6474175466";
 const GOOGLE_PLAY_REVIEW_URL = "https://play.google.com/store/apps/details?id=net.megastudy.android.mebook&hl=ko";
@@ -14,6 +15,7 @@ const STEPS = [
 export default function PromoHero() {
   return (
     <div className="heroWrap">
+      <CoinRain />
       {/* 상단 컬러 배너 */}
       <section className="heroBanner">
         <div className="heroBannerContent">
