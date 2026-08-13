@@ -48,7 +48,7 @@ export default function PromoHero() {
       </section>
 
       <section className="stepsSection2">
-        <p className="stepsSectionHeading">앱 리뷰 이벤트 참여방법 살펴보기</p>
+  
 
         <div className="promoStepsList">
           {STEPS.map((step, i) => (
