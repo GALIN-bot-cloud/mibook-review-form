@@ -91,8 +91,8 @@ body {
   background: rgba(255, 255, 255, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  padding: 7px 18px;
-  font-size: 13px;
+  padding: 8px 20px;
+  font-size: 16px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 18px;
@@ -621,13 +621,13 @@ body {
    ====================================================== */
 
 .headline {
-  font-size: clamp(26px, 9vw, 38px);
+  font-size: clamp(28px, 9.8vw, 41px);
   white-space: nowrap;
 }
 
 @media (min-width: 900px) {
   .headline {
-    font-size: 46px;
+    font-size: 50px;
     letter-spacing: -0.02em;
   }
 }
