@@ -320,7 +320,7 @@ body {
 .card {
   width: 100%;
   max-width: 440px;
-  background: #ffa640;
+  background: #ffffff;
   border-radius: var(--radius-card);
   padding: 32px 28px 28px;
   box-shadow: 0 2px 16px rgba(25, 31, 40, 0.06);
@@ -799,5 +799,5 @@ body {
    ====================================================== */
 
 .applyPageBg {
-  background: #ff7c3a;
+  background: #ffa640;
 }
