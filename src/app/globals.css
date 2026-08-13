@@ -597,15 +597,20 @@ body {
   margin: 0;
 }
 
-@media (max-width: 380px) {
-  .promoStepCard {
-    padding: 18px 16px;
+/* ======================================================
+   업데이트: 모바일 화면에서만 카드박스-캐릭터 간격 축소 (PC는 그대로)
+   ====================================================== */
+
+@media (max-width: 899px) {
+  .cardBody {
+    margin-top: 20px;
   }
+}
 
   .stepStoreRow {
     flex-direction: column;
   }
-}
+
 
 @media (min-width: 900px) {
   .heroBannerCurve {
