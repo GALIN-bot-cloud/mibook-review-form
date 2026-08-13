@@ -812,7 +812,7 @@ body {
 
 @media (max-width: 899px) {
   .heroBanner::after {
-    height: 14px;
+    height: 40px;
   }
 }
 
