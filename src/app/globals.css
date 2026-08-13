@@ -243,6 +243,8 @@ body {
 
 .promoStepBody {
   display: flex;
+  flex: 1;
+  min-width: 0;
   flex-direction: column;
   gap: 6px;
   padding-top: 2px;
