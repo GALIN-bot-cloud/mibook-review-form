@@ -1,13 +1,13 @@
-// [공개 페이지] 리뷰 인증 신청폼
-import ReviewForm from "@/components/ReviewForm";
+// [공개 페이지] 미북 앱 리뷰 작성자용 히어로(첫 화면)
+import PromoHero from "@/components/review/PromoHero";
+import SparkleDiamonds from "@/components/review/SparkleDiamonds";
 
-export default function ApplyPage() {
+export default function ReviewFormPage() {
   return (
     <div className="page-bg">
+      <SparkleDiamonds />
       <div className="page-inner">
-        <div className="formSectionAnchor">
-          <ReviewForm />
-        </div>
+        <PromoHero />
       </div>
     </div>
   );

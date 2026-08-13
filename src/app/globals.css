@@ -672,11 +672,9 @@ body {
 }
 
 /* ======================================================
-   업데이트: 코인이 떨어진 뒤 그 자리에서 계속 둥둥 떠다니는 모션
-   - 바깥 요소(coinRainItem): 위에서 떨어져 내려와 자리를 잡음 (한 번만, top 애니메이션)
-   - 안쪽 요소(coinFloatInner): 자리를 잡은 뒤부터 계속 위아래로 둥둥 (무한 반복, transform)
+   업데이트: 코인이 위에서 한 번 쏟아지고 사라지는 인트로 모션
    ====================================================== */
-
+ 
 .coinRainLayer {
   position: absolute;
   top: 0;
@@ -687,7 +685,7 @@ body {
   pointer-events: none;
   overflow: hidden;
 }
-
+ 
 .coinRainItem {
   position: absolute;
   top: -60px;
@@ -697,46 +695,120 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-
+ 
 @keyframes coinFall {
   0% {
-    top: -60px;
-    transform: rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
   }
   100% {
-    top: var(--rest-top, 70vh);
-    transform: rotate(360deg);
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
   }
 }
-
-.coinFloatInner {
-  display: inline-block;
-  animation: coinFloat 3.2s ease-in-out infinite;
-}
-
-@keyframes coinFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
+ 
 @media (prefers-reduced-motion: reduce) {
   .coinRainLayer {
     display: none;
   }
 }
-
+ 
 /* ======================================================
    업데이트: PC 화면에서 STEP 02 추가 안내 문구가 한 줄에 들어가도록 크기 축소
    ====================================================== */
-
+ 
 @media (min-width: 900px) {
   .promoStepNote {
     font-size: 10px;
     white-space: nowrap;
+  }
+}
+ 
+/* ======================================================
+   업데이트: 페이지 전체에 작은 다이아몬드가 번갈아 반짝이는 배경 효과
+   ====================================================== */
+ 
+.sparkleLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+  overflow: hidden;
+}
+ 
+.sparkleDiamond {
+  position: absolute;
+  color: var(--color-primary);
+  text-shadow: 0 0 5px rgba(255, 124, 58, 0.5);
+  animation-name: sparkleTwinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+ 
+@keyframes sparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .sparkleLayer {
+    display: none;
+  }
+}
+
+/* ======================================================
+   업데이트: 페이지 전체에 작은 다이아몬드가 번갈아 반짝이는 배경 효과
+   ====================================================== */
+
+.sparkleLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkleDiamond {
+  position: absolute;
+  color: var(--color-primary);
+  text-shadow: 0 0 5px rgba(255, 124, 58, 0.5);
+  animation-name: sparkleTwinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+
+@keyframes sparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkleLayer {
+    display: none;
   }
 }
