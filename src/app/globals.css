@@ -818,6 +818,23 @@ body {
 
 .heroBannerCurve {
   display: block;
-  margin-bottom: -6px;
-  shape-rendering: crispEdges;
+}
+
+/* ======================================================
+   버그 수정: 곡선 경계의 이음선을 흰색 막대로 확실하게 덮음
+   ====================================================== */
+
+.heroBanner {
+  position: relative;
+}
+
+.heroBanner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: #ffffff;
+  pointer-events: none;
 }
