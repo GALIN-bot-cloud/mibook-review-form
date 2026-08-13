@@ -320,7 +320,7 @@ body {
 .card {
   width: 100%;
   max-width: 440px;
-  background: var(--color-surface);
+  background: #ffa640;
   border-radius: var(--radius-card);
   padding: 32px 28px 28px;
   box-shadow: 0 2px 16px rgba(25, 31, 40, 0.06);
@@ -550,16 +550,30 @@ body {
 
 .guideList {
   margin: 0;
-  padding-left: 18px;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .guideList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   font-size: 12.5px;
   color: var(--color-text-muted);
   line-height: 1.6;
+}
+
+.guideList li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 .successIcon {
@@ -778,4 +792,12 @@ body {
   .sparkleLayer {
     display: none;
   }
+}
+
+/* ======================================================
+   업데이트: 신청폼(apply) 페이지 전용 배경색
+   ====================================================== */
+
+.applyPageBg {
+  background: #ff7c3a;
 }
