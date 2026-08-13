@@ -186,8 +186,11 @@ body {
   font-size: 22px;
   letter-spacing: -0.01em;
   transform: skewX(-3deg);
-  color: var(--ink);
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #ffff64, #ffa640);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
   margin: 0 0 20px;
   text-align: center;
 }
