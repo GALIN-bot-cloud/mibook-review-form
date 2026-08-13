@@ -621,12 +621,12 @@ body {
    ====================================================== */
 
 .headline {
-  font-size: clamp(24px, 8vw, 34px);
+  font-size: clamp(28px, 9.5vw, 40px);
 }
 
 @media (min-width: 900px) {
   .headline {
-    font-size: 42px;
+    font-size: 52px;
     letter-spacing: -0.02em;
   }
 }
