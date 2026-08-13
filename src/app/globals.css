@@ -806,6 +806,16 @@ body {
   pointer-events: none;
 }
 
+/* ======================================================
+   업데이트: 모바일에서만 곡선 경계 이음선 커버를 더 두껍게
+   ====================================================== */
+
+@media (max-width: 899px) {
+  .heroBanner::after {
+    height: 14px;
+  }
+}
+
 .cardCharacter {
   position: absolute;
   z-index: 2;
