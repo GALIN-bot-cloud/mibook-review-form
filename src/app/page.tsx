@@ -5,9 +5,11 @@ import SparkleDiamonds from "@/components/review/SparkleDiamonds";
 export default function ReviewFormPage() {
   return (
     <div className="page-bg">
-      <SparkleDiamonds />
-      <div className="page-inner">
-        <PromoHero />
+      <div className="heroStageGrid">
+        <SparkleDiamonds />
+        <div className="page-inner">
+          <PromoHero />
+        </div>
       </div>
     </div>
   );
