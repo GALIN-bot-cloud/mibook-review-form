@@ -18,7 +18,9 @@ export default function PromoHero() {
       <section className="heroBanner">
         <div className="heroBannerContent">
           <span className="heroBadge">미북 앱 리뷰 이벤트</span>
-          <h1 className="headline">리뷰 남기고 혜택 받자!</h1>
+          <h1 className="headline">
+  <span className="headlineAccent">리뷰</span> 남기고 <span className="headlineAccent">혜택</span> 받자!
+</h1>
 
           <div className="heroCharacterWrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
