@@ -853,3 +853,608 @@ body {
   text-decoration: underline;
   margin-top: -2px;
 }
+
+/* ============================================================
+   관리자 대시보드 (src/app/admin/page.tsx + AdminDashboard.tsx)
+   ============================================================ */
+
+.adminPage {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+/* ---------- 헤더 ---------- */
+.adminHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #1c1c22;
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+
+.adminLogoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminLogo {
+  font-size: 22px;
+}
+
+.adminLogoTitle {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.adminLogoSub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 2px 0 0;
+}
+
+.adminHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.adminNavLink {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+}
+
+.adminNavLink.isActive {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.adminBadgeCount {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-accent-yellow);
+}
+
+.adminLogoutBtn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adminLogoutBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- 탭 ---------- */
+.adminTabs {
+  display: flex;
+  gap: 8px;
+  background: #1c1c22;
+  border-radius: 10px;
+  padding: 6px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.adminTab {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.adminTab.isActive {
+  background: #ffffff;
+  color: var(--color-text);
+}
+
+/* ---------- 요약 카드 ---------- */
+.adminSummaryRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.adminSummaryCard {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+.adminSummaryLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin: 0 0 8px;
+}
+
+.adminSummaryValue {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.adminSummaryValue-success {
+  color: var(--color-success);
+}
+
+.adminSummaryValue-warning {
+  color: var(--color-primary-dark);
+}
+
+.adminSummaryValue-error {
+  color: var(--color-error);
+}
+
+.adminSummarySub {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  margin: 4px 0 0;
+}
+
+/* ---------- 빈 상태(관리자 로그) ---------- */
+.adminEmptyNotice {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 13.5px;
+}
+
+/* ---------- 필터 바 ---------- */
+.adminFilterBar {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.adminFilterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.adminFilterRowBottom {
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 14px;
+}
+
+.adminFilterField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 140px;
+  flex: 1;
+}
+
+.adminFilterLabel {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.adminFilterInput {
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: var(--color-text);
+  background: #ffffff;
+}
+
+.adminFilterInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.adminStatusFilterRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.adminStatusFilterBtn {
+  background: #f7f6f4;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.adminStatusFilterBtn.isActive {
+  background: var(--color-text);
+  color: #ffffff;
+  border-color: var(--color-text);
+}
+
+.adminFilterActions {
+  display: flex;
+  gap: 8px;
+}
+
+.adminBtnGhost {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.adminBtnPrimary {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--color-success);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- 테이블 ---------- */
+.adminTableSection {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.adminTableHeader {
+  padding: 14px 18px;
+  background: #1c1c22;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.adminTableStatusMsg {
+  padding: 40px 18px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.adminTableStatusMsg-error {
+  color: var(--color-error);
+}
+
+.adminTableWrap {
+  overflow-x: auto;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.adminTable th {
+  text-align: left;
+  padding: 10px 14px;
+  background: #f7f6f4;
+  color: var(--color-text-muted);
+  font-weight: 700;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.adminTable td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.adminTableLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.adminDetailBtn {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.adminStatusBadge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.adminStatusBadge-접수 {
+  background: #eef0f2;
+  color: #5b6570;
+}
+
+.adminStatusBadge-검토중 {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.adminStatusBadge-지급완료 {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.adminStatusBadge-반려 {
+  background: #fdeceb;
+  color: var(--color-error);
+}
+
+/* ---------- 모달 ---------- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modalCard {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modalHeaderLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin: 0 0 4px;
+}
+
+.modalHeaderTitle {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.modalCloseBtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.modalBody {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modalInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modalInfoBox {
+  background: #f7f6f4;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.modalInfoBoxTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin: 0 0 8px;
+}
+
+.modalInfoRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12.5px;
+  margin: 0 0 4px;
+}
+
+.modalInfoKey {
+  color: var(--color-text-muted);
+}
+
+.modalImageSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modalImageSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalImageOpenLink {
+  font-size: 12px;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.modalImagePreview {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: #fafafa;
+}
+
+.modalStatusSection {
+  border-top: 1px solid var(--color-border);
+  padding-top: 14px;
+}
+
+.modalStatusCurrentLabel {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin: 0 0 10px;
+}
+
+.modalStatusCurrentValue {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.modalStatusButtons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.modalStatusBtn {
+  height: 38px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modalStatusBtn.isActive.modalStatusBtn-접수 {
+  background: #eef0f2;
+  color: #5b6570;
+  border-color: #5b6570;
+}
+
+.modalStatusBtn.isActive.modalStatusBtn-검토중 {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+}
+
+.modalStatusBtn.isActive.modalStatusBtn-지급완료 {
+  background: var(--color-success);
+  color: #ffffff;
+  border-color: var(--color-success);
+}
+
+.modalStatusBtn.isActive.modalStatusBtn-반려 {
+  background: var(--color-error);
+  color: #ffffff;
+  border-color: var(--color-error);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--color-border);
+}
+
+.modalCancelBtn {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modalSaveBtn {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: none;
+  background: var(--color-success);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modalSaveBtn:disabled {
+  background: #c9d3de;
+  cursor: not-allowed;
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 900px) {
+  .adminSummaryRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modalInfoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalStatusButtons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

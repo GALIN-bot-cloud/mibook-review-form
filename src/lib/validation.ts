@@ -49,7 +49,7 @@ export type ReviewFormValues = z.infer<typeof reviewFormSchema>;
 export const updateStatusSchema = z.object({
   submissionId: z.string().min(1),
   month: z.string().regex(/^\d{4}-\d{2}$/, "월 형식이 올바르지 않아요. (예: 2026-08)"),
-  status: z.enum(["대기", "지급완료"]),
+  status: z.enum(["접수", "검토중", "지급완료", "반려"]),
 });
 
 export type UpdateStatusValues = z.infer<typeof updateStatusSchema>;
