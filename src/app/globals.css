@@ -818,5 +818,6 @@ body {
 
 .heroBannerCurve {
   display: block;
-  margin-bottom: -2px;
+  margin-bottom: -6px;
+  shape-rendering: crispEdges;
 }
