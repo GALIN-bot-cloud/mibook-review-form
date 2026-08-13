@@ -42,10 +42,6 @@ body {
     sans-serif;
 }
 
-/* ============================================================
-   공통 페이지 래퍼 (홈 히어로 페이지 / 신청폼 페이지 둘 다 사용)
-   ============================================================ */
-
 .page-bg {
   position: relative;
   min-height: 100dvh;
@@ -59,18 +55,13 @@ body {
 .formSectionAnchor {
   display: flex;
   justify-content: center;
-  padding: clamp(140px, 34vw, 260px) 20px 40px;
+  padding: clamp(90px, 20vw, 170px) 20px 40px;
 }
-
-/* ============================================================
-   히어로 랜딩 페이지 (src/app/page.tsx + PromoHero.tsx)
-   ============================================================ */
 
 .heroWrap {
   display: block;
 }
 
-/* ---------- 상단 오렌지 배너 ---------- */
 .heroBanner {
   position: relative;
   background: var(--color-bg);
@@ -125,13 +116,12 @@ body {
   height: auto;
 }
 
-/* 배너 하단 웨이브 곡선: 흰색이 곡선 아래쪽부터 배너 맨 밑까지 꽉 채움 */
 .heroBannerCurve {
   display: block;
   width: 100%;
   height: 30px;
 }
-/* ---------- 화이트 섹션: 2차 카피 ---------- */
+
 .heroBottomCopy {
   max-width: 480px;
   margin: 0 auto;
@@ -155,7 +145,6 @@ body {
   line-height: 1.35;
 }
 
-/* ---------- CTA ---------- */
 .ctaSection {
   display: block;
   max-width: 480px;
@@ -185,7 +174,6 @@ body {
   background: var(--color-primary-dark);
 }
 
-/* ---------- 참여방법 (개별 스텝 카드) ---------- */
 .stepsSection2 {
   max-width: 480px;
   margin: 0 auto;
@@ -279,7 +267,6 @@ body {
   margin: 0;
 }
 
-/* STEP 01 안에 통합된 스토어 버튼 (Secondary, Primary CTA보다 낮은 위계) */
 .stepStoreCaption {
   margin: 10px 0 8px;
   font-size: 12px;
@@ -313,19 +300,20 @@ body {
   color: #ffffff;
 }
 
-/* ============================================================
-   신청폼 페이지 (src/app/apply/page.tsx + ReviewForm.tsx)
-   ============================================================ */
-
 .card {
   position: relative;
   overflow: visible;
   width: 100%;
   max-width: 440px;
+}
+
+.cardBody {
+  position: relative;
+  z-index: 3;
   background: #ffffff;
   border-radius: var(--radius-card);
   padding: 32px 28px 28px;
-  padding-top: clamp(80px, 18vw, 160px);
+  padding-top: clamp(56px, 12vw, 100px);
   box-shadow: 0 2px 16px rgba(25, 31, 40, 0.06);
 }
 
@@ -609,10 +597,6 @@ body {
   margin: 0;
 }
 
-/* ============================================================
-   반응형: 모바일에서 좁은 화면 대응
-   ============================================================ */
-
 @media (max-width: 380px) {
   .promoStepCard {
     padding: 18px 16px;
@@ -623,19 +607,11 @@ body {
   }
 }
 
-/* ======================================================
-   업데이트: PC(넓은 화면)에서만 곡선을 더 뚜렷하게 (모바일은 그대로 유지)
-   ====================================================== */
-
 @media (min-width: 900px) {
   .heroBannerCurve {
     height: 55px;
   }
 }
-
-/* ======================================================
-   업데이트: 헤드라인 크기 - 모바일/PC 각각 별도로 최대한 크게 (줄바꿈 없이)
-   ====================================================== */
 
 .headline {
   font-size: clamp(28px, 9.8vw, 41px);
@@ -648,10 +624,6 @@ body {
     letter-spacing: -0.02em;
   }
 }
-
-/* ======================================================
-   업데이트: 헤드라인 등장 모션 효과 (팝업 + 살짝 흔들림)
-   ====================================================== */
 
 @keyframes headlinePop {
   0% {
@@ -678,20 +650,12 @@ body {
   }
 }
 
-/* ======================================================
-   업데이트: PC 화면에서 곡선-문구 사이 빈 공간만 축소 (곡률은 그대로)
-   ====================================================== */
-
 @media (min-width: 900px) {
   .heroBottomCopy {
     margin-top: 0;
   }
 }
 
-/* ======================================================
-   업데이트: 코인이 위에서 한 번 쏟아지고 사라지는 인트로 모션
-   ====================================================== */
- 
 .coinRainLayer {
   position: absolute;
   top: 0;
@@ -702,7 +666,7 @@ body {
   pointer-events: none;
   overflow: hidden;
 }
- 
+
 .coinRainItem {
   position: absolute;
   top: -60px;
@@ -712,7 +676,7 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
- 
+
 @keyframes coinFall {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -726,29 +690,20 @@ body {
     opacity: 0;
   }
 }
- 
+
 @media (prefers-reduced-motion: reduce) {
   .coinRainLayer {
     display: none;
   }
 }
- 
-/* ======================================================
-   업데이트: PC 화면에서 STEP 02 추가 안내 문구가 한 줄에 들어가도록 크기 축소
-   ====================================================== */
- 
+
 @media (min-width: 900px) {
   .promoStepNote {
     font-size: 10px;
     white-space: nowrap;
   }
 }
- 
-/* ======================================================
-   업데이트: 페이지 배경에 작은 다이아몬드가 번갈아 반짝임 (스크롤과 함께 이동)
-   ====================================================== */
 
-/* 그리드 트릭: 콘텐츠 높이에 자동으로 맞춰지는 배경 레이어를 만들기 위한 래퍼 */
 .heroStageGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -797,17 +752,9 @@ body {
   }
 }
 
-/* ======================================================
-   업데이트: 신청폼(apply) 페이지 전용 배경색
-   ====================================================== */
-
 .applyPageBg {
   background: #ffa640;
 }
-
-/* ======================================================
-   업데이트: PC 화면에서만 캐릭터 이미지 크게
-   ====================================================== */
 
 @media (min-width: 900px) {
   .characterImg {
@@ -815,17 +762,9 @@ body {
   }
 }
 
-/* ======================================================
-   버그 수정: 곡선과 화이트 섹션 경계의 얇은 이음선(seam) 제거
-   ====================================================== */
-
 .heroBannerCurve {
   display: block;
 }
-
-/* ======================================================
-   버그 수정: 곡선 경계의 이음선을 흰색 막대로 확실하게 덮음
-   ====================================================== */
 
 .heroBanner {
   position: relative;
@@ -842,14 +781,10 @@ body {
   pointer-events: none;
 }
 
-/* ======================================================
-   업데이트: 신청폼 카드 상단에 캐릭터가 걸쳐서 튀어나오는 배치
-   ====================================================== */
-
 .cardCharacter {
   position: absolute;
-  z-index: 10;
-  top: clamp(-190px, -34vw, -70px);
+  z-index: 2;
+  top: clamp(-230px, -36vw, -120px);
   left: 50%;
   transform: translateX(-50%);
   width: clamp(240px, 60vw, 420px);
@@ -861,7 +796,7 @@ body {
 
 @media (max-width: 380px) {
   .cardCharacter {
-    top: clamp(-160px, -40vw, -60px);
+    top: clamp(-190px, -42vw, -95px);
     width: clamp(200px, 68vw, 300px);
   }
 }

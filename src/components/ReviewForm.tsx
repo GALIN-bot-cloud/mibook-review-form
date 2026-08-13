@@ -124,13 +124,15 @@ export default function ReviewForm() {
       <div className="card">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/apply-character.png" alt="미북 캐릭터" className="cardCharacter" />
-        <div className="successIcon">✓</div>
-        <h1 className="successTitle">리뷰 인증이 접수됐어요</h1>
-        <p className="successDesc">
-          입력해주신 정보를 확인한 후,
-          <br />
-          영업일 기준 5일 이내 me포인트 2,000P를 지급해드려요.
-        </p>
+        <div className="cardBody">
+          <div className="successIcon">✓</div>
+          <h1 className="successTitle">리뷰 인증이 접수됐어요</h1>
+          <p className="successDesc">
+            입력해주신 정보를 확인한 후,
+            <br />
+            영업일 기준 5일 이내 me포인트 2,000P를 지급해드려요.
+          </p>
+        </div>
       </div>
     );
   }
@@ -139,116 +141,118 @@ export default function ReviewForm() {
     <div className="card">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/apply-character.png" alt="미북 캐릭터" className="cardCharacter" />
-      <h2 className="formCardHeading">리뷰 인증 접수</h2>
-      <p className="formCardDesc">아래 정보를 정확히 입력해 주세요.</p>
+      <div className="cardBody">
+        <h2 className="formCardHeading">리뷰 인증 접수</h2>
+        <p className="formCardDesc">아래 정보를 정확히 입력해 주세요.</p>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="form">
-        <div className="field">
-          <label className="label" htmlFor="name">
-            성함 <span className="requiredMark">*</span>
-          </label>
-          <input id="name" type="text" placeholder="홍길동" className="input" {...register("name")} />
-          {errors.name && <p className="errorText">{errors.name.message}</p>}
-        </div>
-
-        <div className="field">
-          <label className="label" htmlFor="email">
-            미북 이메일 <span className="requiredMark">*</span>
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="example@mebook.co.kr"
-            className="input"
-            {...register("email")}
-          />
-          {errors.email && <p className="errorText">{errors.email.message}</p>}
-        </div>
-
-        <div className="field">
-          <label className="label" htmlFor="phone">
-            전화번호 <span className="requiredMark">*</span>
-          </label>
-          <input id="phone" type="tel" placeholder="010-1234-5678" className="input" {...register("phone")} />
-          {errors.phone && <p className="errorText">{errors.phone.message}</p>}
-        </div>
-
-        <div className="field">
-          <label className="label">
-            리뷰 캡처 <span className="requiredMark">*</span>
-          </label>
-
-          {!hasImage ? (
-            <label className="dropzone" htmlFor="reviewImage">
-              <span className="dropzoneIcon">⬆</span>
-              <span className="dropzoneText">이미지 업로드</span>
-              <span className="dropzoneHint">jpg · png · jpeg · 최대 10MB</span>
-              <input
-                id="reviewImage"
-                type="file"
-                accept="image/png,image/jpeg,image/webp"
-                onChange={handleImageChange}
-                className="hiddenInput"
-              />
+        <form onSubmit={handleSubmit(onSubmit)} className="form">
+          <div className="field">
+            <label className="label" htmlFor="name">
+              성함 <span className="requiredMark">*</span>
             </label>
-          ) : (
-            <div className="previewBox">
-              {imagePreviewUrl && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={imagePreviewUrl} alt="리뷰 캡처 미리보기" className="previewImg" />
-              )}
-              <button type="button" onClick={handleRemoveImage} className="removeBtn">
-                다시 선택
+            <input id="name" type="text" placeholder="홍길동" className="input" {...register("name")} />
+            {errors.name && <p className="errorText">{errors.name.message}</p>}
+          </div>
+
+          <div className="field">
+            <label className="label" htmlFor="email">
+              미북 이메일 <span className="requiredMark">*</span>
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="example@mebook.co.kr"
+              className="input"
+              {...register("email")}
+            />
+            {errors.email && <p className="errorText">{errors.email.message}</p>}
+          </div>
+
+          <div className="field">
+            <label className="label" htmlFor="phone">
+              전화번호 <span className="requiredMark">*</span>
+            </label>
+            <input id="phone" type="tel" placeholder="010-1234-5678" className="input" {...register("phone")} />
+            {errors.phone && <p className="errorText">{errors.phone.message}</p>}
+          </div>
+
+          <div className="field">
+            <label className="label">
+              리뷰 캡처 <span className="requiredMark">*</span>
+            </label>
+
+            {!hasImage ? (
+              <label className="dropzone" htmlFor="reviewImage">
+                <span className="dropzoneIcon">⬆</span>
+                <span className="dropzoneText">이미지 업로드</span>
+                <span className="dropzoneHint">jpg · png · jpeg · 최대 10MB</span>
+                <input
+                  id="reviewImage"
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  onChange={handleImageChange}
+                  className="hiddenInput"
+                />
+              </label>
+            ) : (
+              <div className="previewBox">
+                {imagePreviewUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={imagePreviewUrl} alt="리뷰 캡처 미리보기" className="previewImg" />
+                )}
+                <button type="button" onClick={handleRemoveImage} className="removeBtn">
+                  다시 선택
+                </button>
+              </div>
+            )}
+
+            {(imageFileError || errors.reviewImageBase64) && (
+              <p className="errorText">{imageFileError ?? errors.reviewImageBase64?.message}</p>
+            )}
+          </div>
+
+          <div className="agreeRow">
+            <input
+              id="agreePrivacy"
+              type="checkbox"
+              className="agreeCheckbox"
+              {...register("agreePrivacy")}
+            />
+            <label htmlFor="agreePrivacy" className="agreeLabel">
+              개인정보 수집 및 이용에 동의합니다. <span className="requiredMark">(필수)</span>
+              <button
+                type="button"
+                className="agreeToggle"
+                onClick={() => setShowAgreeDetail((v) => !v)}
+              >
+                내용보기 {showAgreeDetail ? "▲" : "▾"}
               </button>
-            </div>
+            </label>
+          </div>
+          {showAgreeDetail && (
+            <p className="agreeDetail">
+              수집 항목: 성함, 이메일, 전화번호, 리뷰 캡처 이미지 · 수집 목적: 리뷰 작성 확인 및
+              포인트 지급 · 보유 기간: 지급 완료 후 이벤트 종료 시점까지 · 위 동의를 거부할 수 있으며,
+              거부 시 이벤트 참여가 제한됩니다.
+            </p>
           )}
+          {errors.agreePrivacy && <p className="errorText">{errors.agreePrivacy.message}</p>}
 
-          {(imageFileError || errors.reviewImageBase64) && (
-            <p className="errorText">{imageFileError ?? errors.reviewImageBase64?.message}</p>
-          )}
+          {submitState === "error" && submitError && <p className="submitErrorBanner">{submitError}</p>}
+
+          <button type="submit" className="submitBtn" disabled={!isValid || submitState === "submitting"}>
+            {submitState === "submitting" ? "제출하는 중..." : "리뷰 인증 제출하기"}
+          </button>
+        </form>
+
+        <div className="guideSection">
+          <p className="guideHeading">안내사항</p>
+          <ul className="guideList">
+            {GUIDELINES.map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ul>
         </div>
-
-        <div className="agreeRow">
-          <input
-            id="agreePrivacy"
-            type="checkbox"
-            className="agreeCheckbox"
-            {...register("agreePrivacy")}
-          />
-          <label htmlFor="agreePrivacy" className="agreeLabel">
-            개인정보 수집 및 이용에 동의합니다. <span className="requiredMark">(필수)</span>
-            <button
-              type="button"
-              className="agreeToggle"
-              onClick={() => setShowAgreeDetail((v) => !v)}
-            >
-              내용보기 {showAgreeDetail ? "▲" : "▾"}
-            </button>
-          </label>
-        </div>
-        {showAgreeDetail && (
-          <p className="agreeDetail">
-            수집 항목: 성함, 이메일, 전화번호, 리뷰 캡처 이미지 · 수집 목적: 리뷰 작성 확인 및
-            포인트 지급 · 보유 기간: 지급 완료 후 이벤트 종료 시점까지 · 위 동의를 거부할 수 있으며,
-            거부 시 이벤트 참여가 제한됩니다.
-          </p>
-        )}
-        {errors.agreePrivacy && <p className="errorText">{errors.agreePrivacy.message}</p>}
-
-        {submitState === "error" && submitError && <p className="submitErrorBanner">{submitError}</p>}
-
-        <button type="submit" className="submitBtn" disabled={!isValid || submitState === "submitting"}>
-          {submitState === "submitting" ? "제출하는 중..." : "리뷰 인증 제출하기"}
-        </button>
-      </form>
-
-      <div className="guideSection">
-        <p className="guideHeading">안내사항</p>
-        <ul className="guideList">
-          {GUIDELINES.map((line, i) => (
-            <li key={i}>{line}</li>
-          ))}
-        </ul>
       </div>
     </div>
   );
