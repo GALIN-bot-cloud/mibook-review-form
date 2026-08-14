@@ -709,10 +709,19 @@ body {
 
 .coinShape {
   display: block;
+  position: relative;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fff6c8, #ffd54a 45%, #f5a623 78%, #d9820b 100%);
-  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.6),
-    0 2px 4px rgba(0, 0, 0, 0.18);
+  background: linear-gradient(135deg, #fff2b8 0%, #ffd54a 35%, #f7b733 62%, #e08e0b 100%);
+  border: 1.5px solid #c97a08;
+  box-shadow: inset 0 0 0 2px #ffe9a8, inset 0 -2px 3px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.coinShape::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
 }
 
 @keyframes coinFall {
