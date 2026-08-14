@@ -701,11 +701,18 @@ body {
 .coinRainItem {
   position: absolute;
   top: -60px;
-  line-height: 1;
   animation-name: coinFall;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+
+.coinShape {
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6c8, #ffd54a 45%, #f5a623 78%, #d9820b 100%);
+  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.18);
 }
 
 @keyframes coinFall {

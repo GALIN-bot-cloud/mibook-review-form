@@ -1,4 +1,6 @@
 // [장식용] 페이지가 열릴 때 코인이 위에서 한 번 쏟아지고 사라지는 인트로 모션
+// 이모지(🪙) 대신 CSS로 직접 그린 동전 모양을 사용 - 기기/브라우저에 따라
+// 이모지 렌더링이 달라지는 문제를 피하고 항상 동일한 황금색 동전으로 보이게 함
 // 순수 장식 요소라 클릭/터치에 반응하지 않음 (pointer-events: none)
 
 const COINS = [
@@ -25,12 +27,11 @@ export default function CoinRain() {
           className="coinRainItem"
           style={{
             left: coin.left,
-            fontSize: coin.size,
             animationDelay: coin.delay,
             animationDuration: coin.duration,
           }}
         >
-          🪙
+          <span className="coinShape" style={{ width: coin.size, height: coin.size }} />
         </span>
       ))}
     </div>
