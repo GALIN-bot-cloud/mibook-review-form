@@ -1597,3 +1597,28 @@ body {
     font-size: 27px;
   }
 }
+
+/* ======================================================
+   업데이트: 이미지 로딩 실패 시 대체 화면 스타일
+   ====================================================== */
+
+.modalImageFallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border-radius: 10px;
+  border: 1px dashed var(--color-border);
+  background: #fafafa;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  text-align: center;
+  padding: 16px;
+}
+
+.modalSavingHint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin: 10px 0 0;
+  text-align: center;
+}

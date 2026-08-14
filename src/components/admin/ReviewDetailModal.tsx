@@ -79,9 +79,22 @@ export default function ReviewDetailModal({
               </a>
             </div>
             <a href={record.reviewImageUrl} target="_blank" rel="noreferrer">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={record.reviewImageUrl} alt="리뷰 캡처" className="modalImagePreview" />
-            </a>
+  {/* eslint-disable-next-line @next/next/no-img-element */}
+  <img
+    src={record.reviewImageUrl}
+    alt="리뷰 캡처"
+    className="modalImagePreview"
+    referrerPolicy="no-referrer"
+    onError={(e) => {
+      e.currentTarget.style.display = "none";
+      const fallback = e.currentTarget.nextElementSibling as HTMLElement | null;
+      if (fallback) fallback.style.display = "flex";
+    }}
+  />
+  <div className="modalImageFallback">
+    이미지를 바로 불러올 수 없어요. 클릭해서 새 탭에서 확인해주세요.
+  </div>
+</a>
           </div>
 
           <div className="modalStatusSection">
@@ -90,17 +103,19 @@ export default function ReviewDetailModal({
               현재: <span className="modalStatusCurrentValue">{record.status}</span>
             </p>
             <div className="modalStatusButtons">
-              {STATUS_OPTIONS.map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  className={`modalStatusBtn modalStatusBtn-${s} ${pendingStatus === s ? "isActive" : ""}`}
-                  onClick={() => onChangePendingStatus(s)}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
+  {STATUS_OPTIONS.map((s) => (
+    <button
+      key={s}
+      type="button"
+      className={`modalStatusBtn modalStatusBtn-${s} ${pendingStatus === s ? "isActive" : ""}`}
+      onClick={() => onChangePendingStatus(s)}
+      disabled={saving}
+    >
+      {s}
+    </button>
+  ))}
+</div>
+{saving && <p className="modalSavingHint">구글 시트에 반영 중이에요, 잠시만 기다려주세요...</p>}
           </div>
         </div>
 
