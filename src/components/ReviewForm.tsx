@@ -128,10 +128,10 @@ export default function ReviewForm() {
           <div className="successIcon">✓</div>
           <h1 className="successTitle">리뷰 인증이 접수됐어요</h1>
           <p className="successDesc">
-            입력해주신 정보를 확인한 후,
-            <br />
-            영업일 기준 5일 이내 me포인트 2,000P를 지급해드려요.
-          </p>
+  입력해주신 정보를 확인한 후,
+  <br />
+  영업일 기준 1~2일 이내 me포인트 2,000P를 지급해드려요.
+</p>
         </div>
       </div>
     );
