@@ -159,12 +159,12 @@ export default function ReviewForm() {
               미북 계정 ID <span className="requiredMark">*</span>
             </label>
             <input
-              id="email"
-              type="email"
-              placeholder="example@mebook.co.kr"
-              className="input"
-              {...register("email")}
-            />
+  id="email"
+  type="text"
+  placeholder="미북 계정 ID 입력"
+  className="input"
+  {...register("email")}
+/>
             <a href="https://drive.google.com/file/d/1uWGcD_N8o9ov-pRfszg6Q2VH2EDxFXbu/view?usp=sharing" target="_blank" rel="noreferrer" className="fieldHint">
               *미북스토어 가입 및 포인트 확인 방법 상세보기
             </a>

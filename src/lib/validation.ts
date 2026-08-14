@@ -20,9 +20,9 @@ export const reviewFormSchema = z.object({
     .max(30, "성함이 너무 길어요."),
 
   email: z
-    .string()
-    .trim()
-    .email("올바른 이메일 형식이 아니에요."),
+  .string()
+  .trim()
+  .min(2, "미북 계정 ID를 입력해주세요."),
 
   phone: z
     .string()
