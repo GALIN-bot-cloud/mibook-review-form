@@ -9,6 +9,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { reviewFormSchema, MAX_IMAGE_SIZE_BYTES } from "@/lib/validation";
 import { submitReviewToSheet } from "@/lib/gas";
 
+export const maxDuration = 60;
+
 export async function POST(request: NextRequest) {
   let body: unknown;
   try {
@@ -28,7 +30,7 @@ export async function POST(request: NextRequest) {
   // base64 문자열 길이로 대략적인 이미지 용량 확인 (base64는 원본보다 약 1.37배 큼)
   const estimatedBytes = (parsed.data.reviewImageBase64.length * 3) / 4;
   if (estimatedBytes > MAX_IMAGE_SIZE_BYTES) {
-    return NextResponse.json({ ok: false, error: "이미지 용량이 너무 큽니다. (최대 5MB)" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "이미지 용량이 너무 큽니다. (최대 10MB)" }, { status: 400 });
   }
 
   try {
